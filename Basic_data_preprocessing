@@ -1,0 +1,18 @@
+import pandas as pd
+data1 = {'A': [1, 2, 2, 3, 4, 5, 5],
+         'B': [5, 6, 6, 7, 8, 9, 9]}
+data2 = {'C': [10, 10, 10, 10, 10],
+         'D': [11, 12, 13, 14, 15]}
+df1 = pd.DataFrame(data1)
+df2 = pd.DataFrame(data2)
+print("Before removing duplicates in dataset 1:")
+print(df1)
+df1.drop_duplicates(inplace=True)
+print("\nAfter removing duplicates in dataset 1:")
+print(df1)
+print("\nBefore removing single value columns in dataset 2:")
+print(df2)
+cols_to_remove = [col for col in df2.columns if df2[col].nunique() <= 1]
+df2.drop(cols_to_remove, axis=1, inplace=True)
+print("\nAfter removing single value columns in dataset 2:")
+print(df2)
